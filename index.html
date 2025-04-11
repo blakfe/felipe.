@@ -1,142 +1,108 @@
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lojinha do lipe😀</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 2s ease-in-out;
-        }
-        .slide-in {
-            animation: slideIn 1s ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Simulado Offline</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e5ddd5;
+    }
+    .scrollbar-hidden::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
-<body class="bg-cover bg-center h-screen flex flex-col justify-center items-center text-white relative" style="background-image: url('https://img.freepik.com/free-photo/anime-characters-celebrating-christmas_23-2150970395.jpg');">
-    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
-    
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="text-center z-20 fade-in">
-        <h1 class="text-6xl font-bold text-red-500">lojinha do lipe</h1>
-        <div class="w-4/5 h-8 bg-white bg-opacity-20 rounded-full overflow-hidden relative mt-5">
-            <div class="h-full bg-gradient-to-r from-red-500 to-yellow-500 rounded-full transition-all duration-100 ease-linear" id="loading"></div>
-            <div class="absolute inset-0 flex justify-center items-center font-bold text-yellow-500" id="percentage">0%</div>
-        </div>
-        <div class="text-2xl text-center mt-5 animate-pulse" id="message">Just do it!</div>
+<body class="flex items-center justify-center min-h-screen">
+  <!-- LOGIN -->
+  <div id="loginScreen" class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-4">Entrar no WhatsApp Offline</h1>
+    <input id="userNumber" type="tel" placeholder="Seu número de telefone" class="w-full px-4 py-2 border rounded mb-4" />
+    <button onclick="entrarNoChat()" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Entrar</button>
+  </div>
+
+  <!-- CHAT -->
+  <div id="chatApp" class="hidden w-full max-w-2xl h-[90vh] flex flex-col bg-[#ece5dd] rounded shadow-xl overflow-hidden">
+    <!-- Header -->
+    <div class="bg-[#075e54] text-white p-4 flex items-center justify-between">
+      <div>
+        <div class="text-lg font-bold" id="nomeContato">Contato</div>
+        <div class="text-xs" id="numeroContato">Online</div>
+      </div>
+      <button onclick="location.reload()" class="text-sm bg-red-500 px-2 py-1 rounded">Sair</button>
     </div>
-    
-    <!-- Home Screen -->
-    <div id="home-screen" class="hidden text-center z-20 fade-in">
-        <h2 class="text-4xl text-cyan-500">Bem-vindo</h2>
-        <p class="text-2xl">Escolha seus produtos ou serviços e seja feliz!</p>
-        <button class="mt-5 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="showProducts()">iniciar</button>
+
+    <!-- Mensagens -->
+    <div id="chatBox" class="flex-1 p-4 overflow-y-auto scrollbar-hidden space-y-2"></div>
+
+    <!-- Campo de entrada -->
+    <div class="p-4 bg-[#f0f0f0] flex gap-2">
+      <input id="inputMensagem" type="text" placeholder="Digite uma mensagem 😊" class="flex-1 px-4 py-2 border rounded-full" />
+      <button onclick="enviarMensagem()" class="bg-[#25d366] hover:bg-[#1ebd5f] text-white px-4 py-2 rounded-full">Enviar</button>
     </div>
-    
-    <!-- Products Screen -->
-    <div id="products-screen" class="hidden text-center z-20 fade-in">
-        <h2 class="text-4xl text-cyan-500">Produtos Disponíveis</h2>
-        <div class="overflow-y-auto max-h-screen mt-5 mx-auto p-5 bg-gray-900 bg-opacity-80 rounded-lg slide-in">
-            <div class="mb-5 p-5 bg-gray-80 rounded-lg transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl">INTERNET MÓVEL</h3>
-                <img src="https://i.ibb.co/ZN2b0gp/bgg.png" alt="Placeholder image of a mobile internet service" class="w-full rounded-lg mt-3">
-                <p class="mt-3">Basta ter um chip TIM e pedir seu teste antes de comprar.</p>
-                <p class="mt-2 text-xl font-bold">R$16,99 mensal</p>
-                <button class="mt-3 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="window.open('https://drive.google.com/uc?export=download&id=1K1_y4H3b8j8R7HLzOHX7X5krMqh40X4h', '_blank')">BAIXAR</button>
-            </div>
-            <div class="mb-5 p-5 bg-gray-80 rounded-lg transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl">CANAIS FILMES E SÉRIES</h3>
-                <img src="https://i.ibb.co/SB48nVX/iptv.png" alt="Placeholder image of TV channels and series" class="w-full rounded-lg mt-3">
-                <p class="mt-3">Mais de 5000 conteúdos na sua TV ou celular.</p>
-                <p class="mt-2 text-xl font-bold">R$35,99 mensal</p>
-                <button class="mt-3 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="window.open('https://drive.google.com/uc?export=download&id=1JsYIrjlphokz9_Uci8Y9qeZ1PxPy_wH2', '_blank')">BAIXAR</button>
-            </div>
-            <div class="mb-5 p-5 bg-gray-80 rounded-lg transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl">CARTAZ E ESTAMPA DE BLUSA</h3>
-                <img src="https://mir-s3-cdn-cf.behance.net/projects/404/17c4c4195136719.Y3JvcCwxMTM0LDg4NiwxNDAsMA.png" alt="Placeholder image of a poster and t-shirt design" class="w-full rounded-lg mt-3">
-                <p class="mt-3">Criamos artes para seu evento, seja secular ou evangélico, e estampas para camisas.</p>
-                <p class="mt-2 text-xl font-bold">VALORES A COMBINAR</p>
-                <button class="mt-3 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="window.open('https://wa.me/558591258335', '_blank')">CONTATO</button>
-            </div>
-            <div class="mb-5 p-5 bg-gray-80 rounded-lg transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl">EDIÇÃO DE SITES</h3>
-                <img src="https://intecssa.com/wp-content/uploads/2023/07/Que-estudiar-para-ser-Hacker.jpg" alt="Placeholder image of website editing" class="w-full rounded-lg mt-3">
-                <p class="mt-3">Editamos sites ao seu gosto.</p>
-                <p class="mt-2 text-xl font-bold">R$149,99 mensal</p>
-                <button class="mt-3 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="window.open('https://wa.me/558591258335', '_blank')">CONTATO</button>
-            </div>
-            <div class="mb-5 p-5 bg-gray-80 rounded-lg transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl">OUTROS SERVIÇOS</h3>
-                <img src="https://t4.ftcdn.net/jpg/05/50/95/87/360_F_550958748_OeGcRonEUNoVhd0wjd9zSEMhLFIGO9Bt.jpg" alt="Placeholder image of other services" class="w-full rounded-lg mt-3">
-                <p class="mt-3">Entre em contato para saber mais sobre os serviços que oferecemos.</p>
-                <p class="mt-2 text-xl font-bold">VALORES A COMBINAR</p>
-                <button class="mt-3 px-5 py-2 text-xl bg-red-500 hover:bg-cyan-500 rounded transition duration-300 transform hover:scale-110" onclick="window.open('https://wa.me/558591258335', '_blank')">CONTATO</button>
-            </div>
-        </div>
-    </div>
-    
-    <iframe id="background-music" width="0" height="0" src="https://www.youtube.com/embed/lmsT_Nzeqgs?autoplay=1&loop=1&playlist=lmsT_Nzeqgs" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    
-    <script>
-        const messages = [
-            "loja de produtos e serviços digital!",
-            "promoção de fim de ano!",
-            "aproveite nossas ofertas!",
-            "bora conferir😄!"
-        ];
+  </div>
 
-        let index = 0;
-        const messageElement = document.getElementById('message');
-        const loadingElement = document.getElementById('loading');
-        const percentageElement = document.getElementById('percentage');
-        const loadingScreenElement = document.getElementById('loading-screen');
-        const homeScreenElement = document.getElementById('home-screen');
-        const productsScreenElement = document.getElementById('products-screen');
-        
-        let progress = 0;
+  <audio id="sendSound" src="https://www.myinstants.com/media/sounds/whatsapp_message.mp3"></audio>
+  <audio id="receiveSound" src="https://www.myinstants.com/media/sounds/whatsapp_notification.mp3"></audio>
 
-        const audio = document.getElementById('background-music');
+  <script>
+    let numeroUsuario = '';
+    let numeroContato = '';
 
-        const interval = setInterval(() => {
-            progress++;
-            loadingElement.style.width = progress + '%';
-            percentageElement.textContent = progress + '%';
+    function entrarNoChat() {
+      const user = document.getElementById('userNumber').value.trim();
+      if (!user) {
+        alert('Digite seu número.');
+        return;
+      }
+      numeroUsuario = user;
+      numeroContato = prompt('Digite o número da outra pessoa com quem deseja conversar:');
+      if (!numeroContato) {
+        alert('Você precisa informar o número do outro participante.');
+        return;
+      }
+      document.getElementById('numeroContato').textContent = numeroContato;
+      document.getElementById('nomeContato').textContent = 'Contato';
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('chatApp').classList.remove('hidden');
+    }
 
-            if (progress >= 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    loadingScreenElement.classList.add('hidden');
-                    homeScreenElement.classList.remove('hidden');
-                }, 2000); // Delay for smoother transition
-            }
-        }, 100);
+    function enviarMensagem() {
+      const input = document.getElementById('inputMensagem');
+      const texto = input.value.trim();
+      if (!texto) return;
 
-        setInterval(() => {
-            index = (index + 1) % messages.length;
-            messageElement.textContent = messages[index];
-        }, 3000);
+      const msg = document.createElement('div');
+      msg.className = 'flex justify-end';
+      const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      msg.innerHTML = `<div class="bg-[#dcf8c6] text-sm px-3 py-2 rounded-lg max-w-xs">
+        ${texto}<div class="text-[10px] text-gray-500 text-right">${hora} - ${numeroUsuario}</div></div>`;
+      document.getElementById('chatBox').appendChild(msg);
+      input.value = '';
+      document.getElementById('chatBox').scrollTop = chatBox.scrollHeight;
 
-        function showProducts() {
-            audio.volume = 0.8; // Diminui o volume da música ao apertar iniciar
-            if (audio.paused) {
-                audio.play(); // Toca a música de fundo se ainda não estiver tocando
-            }
-            homeScreenElement.classList.add('hidden');
-            productsScreenElement.classList.remove('hidden');
-        }
-    </script>
+      document.getElementById('sendSound').play();
+
+      setTimeout(() => receberResposta(), 300);
+    }
+
+    function receberResposta() {
+      const resposta = prompt(`Mensagem de ${numeroContato}:`);
+      if (resposta && resposta.trim()) {
+        const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const msg = document.createElement('div');
+        msg.className = 'flex justify-start';
+        msg.innerHTML = `<div class="bg-white text-sm px-3 py-2 rounded-lg max-w-xs">
+          ${resposta}<div class="text-[10px] text-gray-500 text-left">${hora} - ${numeroContato}</div></div>`;
+        document.getElementById('chatBox').appendChild(msg);
+        document.getElementById('chatBox').scrollTop = chatBox.scrollHeight;
+
+        document.getElementById('receiveSound').play();
+      }
+    }
+  </script>
 </body>
 </html>
